@@ -6,6 +6,8 @@ class coordenada
 {
 public:
     float x,y,z,w;
+    float coord[4];
+
     coordenada();
     coordenada(float a, float b, float c);
     coordenada(float a, float b, float c, float d);
@@ -15,12 +17,14 @@ public:
     void sub(float a);
     void mult(float a);
     void div(float a);
+    void coordtoxyz();
+    void xyztocoord();
 
     float magnitude();
     void normalizar();
     float distancia(coordenada a, coordenada b);
 
-    void pvetorial(coordenada a, coordenada b);
+    void crossproduct(coordenada a, coordenada b);
     coordenada projecao(coordenada a);
     float angulo(coordenada a);
 

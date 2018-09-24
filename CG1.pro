@@ -31,7 +31,8 @@ SOURCES += \
     l_pontos.cpp \
     l_faces.cpp \
     o_aresta.cpp \
-    o_face.cpp
+    o_face.cpp \
+    glwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     l_pontos.h \
     l_faces.h \
     o_aresta.h \
-    o_face.h
+    o_face.h \
+    glwidget.h
 
 FORMS += \
         mainwindow.ui
