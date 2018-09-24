@@ -1,15 +1,7 @@
 # CG1
-objeto
-	l_faces
-		face
-			o_ponto
-			o_ponto
-			o_ponto
-	l_arestas
-		aresta
-			o_ponto*2
-
-	l_pontos
-		o_ponto*n
-			int
-			coordenada
+TODO:
+	Ajeitar a estrutura de dados
+		lista de faces
+		lista de vertices
+		lista de arestas
+	Montar um plano para receber objeto
