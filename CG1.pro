@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,7 +32,8 @@ SOURCES += \
     l_faces.cpp \
     o_aresta.cpp \
     o_face.cpp \
-    glwidget.cpp
+    glwidget.cpp \
+    cube.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,3 +47,5 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
+
+LIBS += -lOpengl32 -lglu32

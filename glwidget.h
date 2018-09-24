@@ -1,18 +1,23 @@
-#ifndef QLWIDGET_H
-#define QLWIDGET_H
+#ifndef GLWIDGET_H
+#define GLWIDGET_H
 
+#include <QObject>
 #include <QWidget>
 #include <QGLWidget>
-#include <QWidget>
-
-class GLwidget : public QGLWidget
+#include <GL/glu.h>
+#include <cstring>
+#include <iostream>
+#include <math.h>
+class GLWidget : public QGLWidget
 {
     Q_OBJECT
 public:
-    explicit GLwidget(QWidget *parent = nullptr);
+    explicit GLWidget(QWidget *parent = nullptr);
     void initializeGL();
     void paintGL();
     void resizeGL(int w, int h);
+    void desenharCubo();
+    void desenhaEixo();
 
 signals:
 
