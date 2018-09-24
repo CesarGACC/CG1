@@ -1,37 +1,8 @@
 #include "glwidget.h"
 #include "l_pontos.h"
 #include "l_faces.h"
+#include "cubo.h"
 
-void gerarCubo(l_pontos lp, l_faces lf)
-{
-    lp.l.push_back(o_ponto(0,0,0,0));
-    lp.l.push_back(o_ponto(1,1,0,0));
-    lp.l.push_back(o_ponto(2,1,1,0));
-    lp.l.push_back(o_ponto(3,0,1,0));
-    lp.l.push_back(o_ponto(4,0,1,1));
-    lp.l.push_back(o_ponto(5,1,0,1));
-    lp.l.push_back(o_ponto(6,1,1,1));
-    lp.l.push_back(o_ponto(7,0,1,1));
-
-    lf.l.push_back(o_face(0,lp.l.at(0),lp.l.at(1),lp.l.at(2)));
-    lf.l.push_back(o_face(0,lp.l.at(0),lp.l.at(1),lp.l.at(3)));
-
-    lf.l.push_back(o_face(0,lp.l.at(3),lp.l.at(2),lp.l.at(6)));
-    lf.l.push_back(o_face(0,lp.l.at(3),lp.l.at(6),lp.l.at(7)));
-
-    lf.l.push_back(o_face(0,lp.l.at(4),lp.l.at(7),lp.l.at(5)));
-    lf.l.push_back(o_face(0,lp.l.at(6),lp.l.at(5),lp.l.at(7)));
-
-    lf.l.push_back(o_face(0,lp.l.at(1),lp.l.at(4),lp.l.at(5)));
-    lf.l.push_back(o_face(0,lp.l.at(0),lp.l.at(4),lp.l.at(1)));
-
-    lf.l.push_back(o_face(0,lp.l.at(3),lp.l.at(7),lp.l.at(4)));
-    lf.l.push_back(o_face(0,lp.l.at(3),lp.l.at(4),lp.l.at(0)));
-
-    lf.l.push_back(o_face(0,lp.l.at(5),lp.l.at(6),lp.l.at(2)));
-    lf.l.push_back(o_face(0,lp.l.at(5),lp.l.at(2),lp.l.at(1)));
-
-}
 
 GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 {
@@ -40,44 +11,25 @@ GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 
 void GLWidget::desenharCubo()
 {
-    l_pontos lp; l_faces lf;
-
-        lp.l.push_back(o_ponto(0,0,0,0));
-        lp.l.push_back(o_ponto(1,1,0,0));
-        lp.l.push_back(o_ponto(2,1,1,0));
-        lp.l.push_back(o_ponto(3,0,1,0));
-        lp.l.push_back(o_ponto(4,0,1,1));
-        lp.l.push_back(o_ponto(5,1,0,1));
-        lp.l.push_back(o_ponto(6,1,1,1));
-        lp.l.push_back(o_ponto(7,0,1,1));
-
-        lf.l.push_back(o_face(0,lp.l.at(0),lp.l.at(1),lp.l.at(2)));
-        lf.l.push_back(o_face(0,lp.l.at(0),lp.l.at(1),lp.l.at(3)));
-
-        lf.l.push_back(o_face(0,lp.l.at(3),lp.l.at(2),lp.l.at(6)));
-        lf.l.push_back(o_face(0,lp.l.at(3),lp.l.at(6),lp.l.at(7)));
-
-        lf.l.push_back(o_face(0,lp.l.at(4),lp.l.at(7),lp.l.at(5)));
-        lf.l.push_back(o_face(0,lp.l.at(6),lp.l.at(5),lp.l.at(7)));
-
-        lf.l.push_back(o_face(0,lp.l.at(1),lp.l.at(4),lp.l.at(5)));
-        lf.l.push_back(o_face(0,lp.l.at(0),lp.l.at(4),lp.l.at(1)));
-
-        lf.l.push_back(o_face(0,lp.l.at(3),lp.l.at(7),lp.l.at(4)));
-        lf.l.push_back(o_face(0,lp.l.at(3),lp.l.at(4),lp.l.at(0)));
-
-        lf.l.push_back(o_face(0,lp.l.at(5),lp.l.at(6),lp.l.at(2)));
-        lf.l.push_back(o_face(0,lp.l.at(5),lp.l.at(2),lp.l.at(1)));
-
-    int p = 0;
-    //gerarCubo(cubopontos,cubofaces);
-
+    int i;
+    cubo c = cubo();/*
     glColor3f(1,0,0);
         glBegin(GL_POINTS);
         for(p=0;p<8 ;p++)
         {
-            printf("Imprimindo (%f,%f,%f)\n",lp.l.at(p).p.x,lp.l.at(p).p.y,lp.l.at(p).p.z);
-            glVertex3f(lp.l.at(p).p.x,lp.l.at(p).p.y,lp.l.at(p).p.z);
+            printf("Imprimindo (%f,%f,%f)\n",c.lp.l.at(p).p.x,c.lp.l.at(p).p.y,c.lp.l.at(p).p.z);
+            glVertex3f(c.lp.l.at(p).p.x,c.lp.l.at(p).p.y,c.lp.l.at(p).p.z);
+        }
+    glEnd();
+    glColor3f(1,1,1);*/
+
+    glColor3f(1,0,0);
+        glBegin(GL_TRIANGLES);
+        for(i=0;i<12 ;i++)
+        {
+            glVertex3f(c.lf.l.at(i).p[0].p.x,c.lf.l.at(i).p[0].p.y,c.lf.l.at(i).p[0].p.z);
+            glVertex3f(c.lf.l.at(i).p[1].p.x,c.lf.l.at(i).p[1].p.y,c.lf.l.at(i).p[1].p.z);
+            glVertex3f(c.lf.l.at(i).p[2].p.x,c.lf.l.at(i).p[2].p.y,c.lf.l.at(i).p[2].p.z);
         }
     glEnd();
     glColor3f(1,1,1);

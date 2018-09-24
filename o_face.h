@@ -8,7 +8,7 @@ public:
     int id;
     o_face();
     o_face(int i,o_ponto a, o_ponto b, o_ponto c);
-    o_ponto pontos[3];
+    o_ponto p[3];
 
 };
 
