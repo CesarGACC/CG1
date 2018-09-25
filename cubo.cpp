@@ -1,10 +1,5 @@
 #include "cubo.h"
 
-/*cubo::cubo()
-{
-
-}*/
-
 cubo::cubo()
 {
     lp.l.push_back(o_ponto(0,0,0,0));

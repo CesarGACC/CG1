@@ -1,12 +1,35 @@
 #include "glwidget.h"
 #include "l_pontos.h"
 #include "l_faces.h"
+#include "objeto.h"
 #include "cubo.h"
-
 
 GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 {
 
+}
+
+void GLWidget::receberObjetos()
+{
+    objetos.push_back(cubo());
+}
+
+void GLWidget::desenharObjetos()
+{
+    int i,j;
+    glColor3f(1,0,0);
+        glBegin(GL_TRIANGLES);
+        for(i=0;i<objetos.size() ;i++)
+        {
+            for(j=0;j<objetos[i].lf.l.size();j++)
+            {
+                glVertex3f(objetos[i].lf.l.at(j).p[0].p.x,objetos[i].lf.l.at(j).p[0].p.y,objetos[i].lf.l.at(j).p[0].p.z);
+                glVertex3f(objetos[i].lf.l.at(j).p[1].p.x,objetos[i].lf.l.at(j).p[1].p.y,objetos[i].lf.l.at(j).p[1].p.z);
+                glVertex3f(objetos[i].lf.l.at(j).p[2].p.x,objetos[i].lf.l.at(j).p[2].p.y,objetos[i].lf.l.at(j).p[2].p.z);
+            }
+        }
+    glEnd();
+    glColor3f(1,1,1);
 }
 
 void GLWidget::desenharCubo()

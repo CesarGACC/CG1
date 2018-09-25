@@ -33,7 +33,9 @@ SOURCES += \
     o_aresta.cpp \
     o_face.cpp \
     glwidget.cpp \
-    cubo.cpp
+    cubo.cpp \
+    objeto.cpp \
+    circulo.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,7 +46,9 @@ HEADERS += \
     o_aresta.h \
     o_face.h \
     glwidget.h \
-    cubo.h
+    cubo.h \
+    objeto.h \
+    circulo.h
 
 FORMS += \
         mainwindow.ui

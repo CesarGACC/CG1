@@ -8,16 +8,22 @@
 #include <cstring>
 #include <iostream>
 #include <math.h>
+
+#include <objeto.h>
+
 class GLWidget : public QGLWidget
 {
     Q_OBJECT
 public:
+    std::vector<Objeto> objetos;
     explicit GLWidget(QWidget *parent = nullptr);
     void initializeGL();
     void paintGL();
     void resizeGL(int w, int h);
     void desenharCubo();
     void desenhaEixo();
+    void receberObjetos();
+    void desenharObjetos();
 
 signals:
 
