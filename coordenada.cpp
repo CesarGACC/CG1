@@ -4,22 +4,25 @@
 void coordenada::setX(float value)
 {
     x = value;
+    xyztocoord();
 }
 
 void coordenada::setY(float value)
 {
     y = value;
-
+    xyztocoord();
 }
 
 void coordenada::setZ(float value)
 {
     z = value;
+    xyztocoord();
 }
 
 void coordenada::setW(float value)
 {
     w = value;
+    xyztocoord();
 }
 
 void coordenada::coordtoxyz()
@@ -148,7 +151,7 @@ void coordenada::crossproduct(coordenada a, coordenada b) //Cross product
 coordenada coordenada::projecao(coordenada a)
 {
     float a1;
-    a1 = this->magnitude()*this->angulo(a);
+    a1 = magnitude()*angulo(a);
     coordenada a2;
     a2 = coordenada(x,y,z);
     a2.sub(a1);
@@ -158,5 +161,5 @@ coordenada coordenada::projecao(coordenada a)
 float coordenada::angulo(coordenada a)
 {
     //Cos do angulo
-    return (x*a.x+y*a.y+z*a.z)/((this->magnitude())*(a.magnitude()));
+    return (x*a.x+y*a.y+z*a.z)/((magnitude())*(a.magnitude()));
 }

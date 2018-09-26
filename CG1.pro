@@ -35,7 +35,8 @@ SOURCES += \
     glwidget.cpp \
     cubo.cpp \
     objeto.cpp \
-    circulo.cpp
+    circulo.cpp \
+    transform.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,7 +49,8 @@ HEADERS += \
     glwidget.h \
     cubo.h \
     objeto.h \
-    circulo.h
+    circulo.h \
+    transform.h
 
 FORMS += \
         mainwindow.ui
