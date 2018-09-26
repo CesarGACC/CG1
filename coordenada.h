@@ -5,10 +5,9 @@
 using namespace std;
 class coordenada
 {
-private:
+public:
     float x,y,z,w;
     float coord[4];
-public:
     coordenada();
     coordenada(float a, float b, float c);
     coordenada(float a, float b, float c, float d);

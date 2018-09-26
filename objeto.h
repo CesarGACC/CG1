@@ -11,9 +11,12 @@ public:
     Objeto();
     l_pontos lp;
     l_faces lf;
-    void translation(float x, float y, float z);
-    void scale(float x, float y, float z);
-    void rotation(float A, int x, int y, int z);
+    l_pontos translation(float x, float y, float z);
+    l_pontos scale(float x, float y, float z);
+    l_pontos rotation(float A, int x, int y, int z);
+    float getX(int i,int j);
+    float getY(int i,int j);
+    float getZ(int i,int j);
 };
 
 #endif // OBJETO_H

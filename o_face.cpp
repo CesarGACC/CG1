@@ -5,7 +5,7 @@ o_face::o_face()
 
 }
 
-o_face::o_face(int i,o_ponto a, o_ponto b, o_ponto c)
+o_face::o_face(int i,int a, int b, int c)
 {
     id = i;
     p[0] = a;

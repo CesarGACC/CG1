@@ -7,8 +7,8 @@ class o_face
 public:
     int id;
     o_face();
-    o_face(int i,o_ponto a, o_ponto b, o_ponto c);
-    o_ponto p[3];
+    o_face(int i,int a, int b, int c);
+    int p[3];
 
 };
 
