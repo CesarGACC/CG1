@@ -67,6 +67,16 @@ coordenada::coordenada(float a, float b, float c, float d)
     setW(d);
     xyztocoord();
 }
+
+void coordenada::add(coordenada a, coordenada b)
+{
+    setX(b.x+a.x);
+    setY(b.y+a.y);
+    setZ(b.z+a.z);
+    setW(b.w+a.w);
+    xyztocoord();
+}
+
 void coordenada::add(coordenada a)
 {
     setX(x+a.x);
@@ -82,6 +92,15 @@ void coordenada::add(float a)
     setY(y+a);
     setZ(z+a);
     setW(w+a);
+    xyztocoord();
+}
+
+void coordenada::sub(coordenada a, coordenada b)
+{
+    setX(a.x-b.x);
+    setY(a.y-b.y);
+    setZ(a.z-b.z);
+    setW(a.w-b.w);
     xyztocoord();
 }
 
@@ -112,6 +131,15 @@ void coordenada::mult(float a)
     xyztocoord();
 }
 
+void coordenada::mult(coordenada c,float a)
+{
+    setX(a*c.x);
+    setY(a*c.y);
+    setZ(a*c.z);
+    setW(a*c.w);
+    xyztocoord();
+}
+
 void coordenada::div(float a)
 {
     setX(x/a);
@@ -138,6 +166,11 @@ void coordenada::normalizar()
 float coordenada::distancia(coordenada a, coordenada b)
 {
     return sqrt((b.x-a.x)*(b.x-a.x) + (b.y-a.y)*(b.y-a.y) + (b.z-a.z)*(b.z-a.z));
+}
+
+float coordenada::dotproduct(coordenada a, coordenada b)
+{
+    return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
 void coordenada::crossproduct(coordenada a, coordenada b) //Cross product

@@ -17,6 +17,8 @@ public:
     float getX(int i,int j);
     float getY(int i,int j);
     float getZ(int i,int j);
+
+    int rayToFace(coordenada O, coordenada V, float t);
 };
 
 #endif // OBJETO_H

@@ -13,9 +13,14 @@ public:
     coordenada(float a, float b, float c, float d);
 
     void add(coordenada a);
+    void add(coordenada a, coordenada b);
     void add(float a);
+
+    void sub(coordenada a, coordenada b);
     void sub(coordenada a);
     void sub(float a);
+
+    void mult(coordenada c,float a)
     void mult(float a);
     void div(float a);
     void coordtoxyz();
@@ -26,6 +31,7 @@ public:
      float distancia(coordenada a, coordenada b);
 
      void crossproduct(coordenada a, coordenada b);
+     float dotproduct(coordenada a, coordenada b);
      coordenada projecao(coordenada a);
      float angulo(coordenada a);
 

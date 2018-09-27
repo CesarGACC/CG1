@@ -77,3 +77,22 @@ float Objeto::getZ(int i, int j)
 {
     return lp.l[lf.l[i].p[j]].p.z;
 }
+
+void Objeto::rayToFace(coordenada O, coordenada V, float t)
+{
+    int i,j;
+    coordenada normal, pint, v0,v1;
+    float d,t;
+    for(i=0,i<lf.l.size();i++)
+    {
+        v0.sub(lp.l[lf.l[i].p[0].id].p,lp.l[lf.l[i].p[1].id].p);
+        v1.sub(lp.l[lf.l[i].p[0].id].p,lp.l[lf.l[i].p[2].id].p);
+        normal = coordenada();
+        normal.crossproduct();
+        d = normal.dotproduct(normal,O);
+        t = - (normal.dotproduct(normal,O) + d) / (normal.dotproduct(normal,V));
+        pint = V;
+        pint.mult(t);
+        pint.add(O);
+    }
+}
