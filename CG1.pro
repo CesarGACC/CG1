@@ -36,7 +36,6 @@ SOURCES += \
     cubo.cpp \
     objeto.cpp \
     circulo.cpp \
-    transform.cpp \
     camera.cpp
 
 HEADERS += \
@@ -51,7 +50,6 @@ HEADERS += \
     cubo.h \
     objeto.h \
     circulo.h \
-    transform.h \
     camera.h
 
 FORMS += \

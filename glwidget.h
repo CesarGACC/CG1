@@ -32,6 +32,7 @@ public:
     void receberObjetos();
     void desenharObjetos();
 
+
 signals:
 
 public slots:

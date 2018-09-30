@@ -15,14 +15,19 @@ public:
     void add(coordenada a);
     void add(coordenada a, coordenada b);
     void add(float a);
+    coordenada operator + (coordenada a);
 
     void sub(coordenada a, coordenada b);
     void sub(coordenada a);
     void sub(float a);
+    coordenada operator - (coordenada a);
 
-    void mult(coordenada c,float a)
+    void mult(coordenada c,float a);
     void mult(float a);
+    coordenada operator * (float a);
+
     void div(float a);
+
     void coordtoxyz();
     void xyztocoord();
 

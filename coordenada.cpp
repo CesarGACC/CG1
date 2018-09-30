@@ -68,6 +68,38 @@ coordenada::coordenada(float a, float b, float c, float d)
     xyztocoord();
 }
 
+coordenada coordenada::operator+(coordenada a)
+{
+    coordenada v = coordenada();
+    v.x = x + a.x;
+    v.y = y + a.y;
+    v.z = z + a.z;
+    v.w = w + a.w;
+    v.xyztocoord();
+    return v;
+}
+coordenada coordenada::operator-(coordenada a)
+{
+    coordenada v = coordenada();
+    v.x = x - a.x;
+    v.y = y - a.y;
+    v.z = z - a.z;
+    v.w = w - a.w;
+    v.xyztocoord();
+    return v;
+}
+
+coordenada coordenada::operator * (float a)
+{
+    coordenada v = coordenada();
+    v.x = x * a;
+    v.y = y * a;
+    v.z = z * a;
+    v.w = w * a;
+    v.xyztocoord();
+    return v;
+}
+
 void coordenada::add(coordenada a, coordenada b)
 {
     setX(b.x+a.x);
@@ -94,6 +126,8 @@ void coordenada::add(float a)
     setW(w+a);
     xyztocoord();
 }
+
+
 
 void coordenada::sub(coordenada a, coordenada b)
 {
@@ -157,10 +191,14 @@ float coordenada::magnitude()
 void coordenada::normalizar()
 {
     float m = magnitude();
-    x = x/m;
-    y = y/m;
-    z = z/m;
-    xyztocoord();
+    if(m>0)
+    {
+        x = x/m;
+        y = y/m;
+        z = z/m;
+        xyztocoord();
+    }
+
 }
 
 float coordenada::distancia(coordenada a, coordenada b)

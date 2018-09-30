@@ -25,8 +25,4 @@ void Camera::calcularIJK()
     pcJ.crossproduct(pcK,pcI);
     pcJ.normalizar();
 
-    printf("Pci = (%f,%f,%f)\n",pcI.x,pcI.y,pcI.z);
-    printf("Pcj = (%f,%f,%f)\n",pcJ.x,pcJ.y,pcJ.z);
-    printf("Pck = (%f,%f,%f)\n",pcK.x,pcK.y,pcK.z);
-
 }

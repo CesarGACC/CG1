@@ -14,7 +14,6 @@ l_pontos Objeto::translation(float x, float y, float z)
         lp.l[i].p.x=(lp.l[i].p.getX()+x);
         lp.l[i].p.y=(lp.l[i].p.getY()+y);
         lp.l[i].p.z=(lp.l[i].p.getZ()+z);
-        printf("(%f,%f,%f)\n",lp.l[i].p.getX(),lp.l[i].p.getY(),lp.l[i].p.getZ());
     }
     return lp;
 }
@@ -78,21 +77,88 @@ float Objeto::getZ(int i, int j)
     return lp.l[lf.l[i].p[j]].p.z;
 }
 
-void Objeto::rayToFace(coordenada O, coordenada V, float t)
+int Objeto::rayToFace(coordenada O, coordenada V, float t)
 {
+    bool ray = true;
     int i,j;
-    coordenada normal, pint, v0,v1;
-    float d,t;
-    for(i=0,i<lf.l.size();i++)
+    //coordenada normal, pint, v0,v1;
+    float dt,tn,td;
+    coordenada pint, w0, w1, w2, wx,a0,a1,a2;
+    coordenada vpn0 = coordenada();
+    coordenada vpn1 = coordenada();
+    coordenada vpn2 = coordenada();
+    for(i=0;i<lf.l.size();i++)
     {
-        v0.sub(lp.l[lf.l[i].p[0].id].p,lp.l[lf.l[i].p[1].id].p);
-        v1.sub(lp.l[lf.l[i].p[0].id].p,lp.l[lf.l[i].p[2].id].p);
-        normal = coordenada();
-        normal.crossproduct();
-        d = normal.dotproduct(normal,O);
-        t = - (normal.dotproduct(normal,O) + d) / (normal.dotproduct(normal,V));
-        pint = V;
-        pint.mult(t);
-        pint.add(O);
+        ray = true;
+        /*if(rayTriangleIntersect(O, V, lp.l[lf.l[i].p[0]].p, lp.l[lf.l[i].p[1]].p, lp.l[lf.l[i].p[2]].p, t))
+        {
+            printf("Hit!");
+        }*/
+        //Plano Normal
+        if(i>0)
+        {
+            j=2;
+        }
+
+        vpn0 =  lp.l[lf.l[i].p[1]].p - lp.l[lf.l[i].p[0]].p;
+        vpn1 =  lp.l[lf.l[i].p[2]].p - lp.l[lf.l[i].p[0]].p;
+
+
+        vpn2.crossproduct(vpn0,vpn1);
+        vpn2.normalizar();
+        dt = vpn2.dotproduct(vpn2,vpn0);
+
+        if(dt<0)
+        {
+            ray = false; //PARALELO
+        }
+
+        tn = vpn2.dotproduct(O,vpn2) + dt;
+        td = vpn2.dotproduct(V,vpn2);
+
+        if(td!=0)
+        {
+            t = tn/td;
+        }else
+        {
+            ray = false;
+        }
+        if(t<0)
+        {
+            ray = false;
+        }
+
+        pint = O + V*t;
+
+        w0 = pint - lp.l[lf.l[i].p[0]].p;
+        w1 = pint - lp.l[lf.l[i].p[1]].p;
+        w2 = pint - lp.l[lf.l[i].p[2]].p;
+
+        a0 = lp.l[lf.l[i].p[1]].p - lp.l[lf.l[i].p[0]].p;
+        a1 = lp.l[lf.l[i].p[2]].p - lp.l[lf.l[i].p[1]].p;
+        a2 = lp.l[lf.l[i].p[0]].p - lp.l[lf.l[i].p[2]].p;
+
+        wx.crossproduct(a0,w0);
+        if(vpn2.dotproduct(vpn2,wx) < 0)
+        {
+            ray = false;
+        }
+
+        wx.crossproduct(a1,w1);
+        if(vpn2.dotproduct(vpn2,wx) < 0)
+        {
+            ray = false;
+        }
+
+        wx.crossproduct(a2,w2);
+        if(vpn2.dotproduct(vpn2,wx) < 0)
+        {
+            ray = false;
+        }
+
+        if(ray==true)
+        {return 1;}
     }
+
+    return 0;
 }
