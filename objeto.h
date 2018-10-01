@@ -17,11 +17,7 @@ public:
     float getX(int i,int j);
     float getY(int i,int j);
     float getZ(int i,int j);
-    bool rayTriangleIntersect(
-        const coordenada &orig, const coordenada &dir,
-        const coordenada &v0, const coordenada &v1, const coordenada &v2,
-        float &t);
-    int rayToFace(coordenada O, coordenada V, float t);
+    int rayToFace(coordenada O, coordenada V);
 };
 
 #endif // OBJETO_H

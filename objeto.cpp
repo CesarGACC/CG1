@@ -77,33 +77,20 @@ float Objeto::getZ(int i, int j)
     return lp.l[lf.l[i].p[j]].p.z;
 }
 
-int Objeto::rayToFace(coordenada O, coordenada V, float t)
+int Objeto::rayToFace(coordenada O, coordenada V)
 {
-    bool ray = true;
+    bool ray;
     int i,j;
-    //coordenada normal, pint, v0,v1;
-    float dt,tn,td;
+    float dt,tn,td,t;
     coordenada pint, w0, w1, w2, wx,a0,a1,a2;
-    coordenada vpn0 = coordenada();
-    coordenada vpn1 = coordenada();
-    coordenada vpn2 = coordenada();
+    coordenada vpn0;
+    coordenada vpn1;
+    coordenada vpn2;
     for(i=0;i<lf.l.size();i++)
     {
         ray = true;
-        /*if(rayTriangleIntersect(O, V, lp.l[lf.l[i].p[0]].p, lp.l[lf.l[i].p[1]].p, lp.l[lf.l[i].p[2]].p, t))
-        {
-            printf("Hit!");
-        }*/
-        //Plano Normal
-        if(i>0)
-        {
-            j=2;
-        }
-
         vpn0 =  lp.l[lf.l[i].p[1]].p - lp.l[lf.l[i].p[0]].p;
         vpn1 =  lp.l[lf.l[i].p[2]].p - lp.l[lf.l[i].p[0]].p;
-
-
         vpn2.crossproduct(vpn0,vpn1);
         vpn2.normalizar();
         dt = vpn2.dotproduct(vpn2,vpn0);
@@ -115,7 +102,6 @@ int Objeto::rayToFace(coordenada O, coordenada V, float t)
 
         tn = vpn2.dotproduct(O,vpn2) + dt;
         td = vpn2.dotproduct(V,vpn2);
-
         if(td!=0)
         {
             t = tn/td;
@@ -129,7 +115,6 @@ int Objeto::rayToFace(coordenada O, coordenada V, float t)
         }
 
         pint = O + V*t;
-
         w0 = pint - lp.l[lf.l[i].p[0]].p;
         w1 = pint - lp.l[lf.l[i].p[1]].p;
         w2 = pint - lp.l[lf.l[i].p[2]].p;

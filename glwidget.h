@@ -12,7 +12,6 @@
 #include "l_faces.h"
 #include "objeto.h"
 #include "cubo.h"
-#include "transform.h"
 #include <objeto.h>
 #include "camera.h"
 
@@ -26,7 +25,7 @@ public:
     void initializeGL();
     void paintGL();
     void resizeGL(int w, int h);
-    void test(int w, int h);
+    void test();
     void desenharCubo();
     void desenhaEixo();
     void receberObjetos();

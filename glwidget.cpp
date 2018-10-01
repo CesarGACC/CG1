@@ -11,20 +11,22 @@ GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 void GLWidget::receberObjetos()
 {
     objetos.push_back(cubo());
-    //printf("Translacao (%f,%f,%f)\n",objetos[0].lp.l[0].p.getX(),objetos[0].lp.l[0].p.getY(),objetos[0].lp.l[0].p.getZ());
-    //objetos[0].lp = objetos[0].translation(-0.5,-0.5,-0.5);
+    objetos.push_back(cubo());
+    objetos[0].lp = objetos[0].translation(-0.5,-0.5,-0.5);
     objetos[0].lp = objetos[0].scale(10,10,10);
-    //objetos[0].lp = objetos[0].translation(5,5,5);
-    objetos[0].lp = objetos[0].translation(0,0,10);
+    objetos[0].lp = objetos[0].translation(-10,0,10);
+
+    objetos[1].lp = objetos[1].translation(-0.5,-0.5,-0.5);
+    objetos[1].lp = objetos[1].rotation(45,0,0,1);
+    objetos[1].lp = objetos[1].scale(5,5,5);
+    objetos[1].lp = objetos[1].translation(5,-5,5);
     //objetos[0].lp = objetos[0].rotation(45,0,0,1);
     //objetos[0].lp = objetos[0].rotation(45,1,0,0);
 
-
-    printf("Translacao (%f,%f,%f)\n",objetos[0].lp.l[0].p.getX(),objetos[0].lp.l[0].p.getY(),objetos[0].lp.l[0].p.getZ());
 }
 
 
-void GLWidget::test(int w, int h)
+void GLWidget::test()
 {
     int i,j;
     float a,b,c;
@@ -50,16 +52,14 @@ void GLWidget::test(int w, int h)
             //glVertex3f(x, y, 0);
             for(i=0;i<objetos.size() ;i++)
             {
-                 if((objetos[i].rayToFace(camera.p,v,1))==1)
+                 if((objetos[i].rayToFace(camera.p,v))==1)
                  {
                      glColor3f((rand()%255)/255., (rand()%255)/255., (rand()%255)/255.);
                      glVertex3f(x, y, 0);
-                 }else
-                 {
-                     glColor3f(0.1, 0.1, 0.1);
-                     glVertex3f(x, y, 0);
                  }
             }
+            glColor3f(0.1, 0.1, 0.1);
+            glVertex3f(x, y, 0);
         }
     }
     glEnd();
@@ -76,7 +76,7 @@ void GLWidget::desenharObjetos()
         {
             for(j=0;j<objetos[i].lf.l.size();j++)
             {
-                objetos[i].rayToFace(camera.p,camera.lookat,1);
+                objetos[i].rayToFace(camera.p,camera.lookat);
                 glColor3f((float)(rand()%1000)/1000,(float)(rand()%1000)/1000,(float)(rand()%1000)/1000);
                     glBegin(GL_TRIANGLES);
                     glVertex3f(objetos[i].getX(j,0),objetos[i].getY(j,0),objetos[i].getZ(j,0));
@@ -146,7 +146,7 @@ void GLWidget::paintGL()
 
     //test(100,100);
     //desenharObjetos();
-    test(100,100);
+    test();
     desenhaEixo();
 }
 
