@@ -36,7 +36,8 @@ SOURCES += \
     cubo.cpp \
     objeto.cpp \
     circulo.cpp \
-    camera.cpp
+    camera.cpp \
+    luz.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -50,7 +51,8 @@ HEADERS += \
     cubo.h \
     objeto.h \
     circulo.h \
-    camera.h
+    camera.h \
+    luz.h
 
 FORMS += \
         mainwindow.ui

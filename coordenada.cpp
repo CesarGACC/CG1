@@ -4,25 +4,25 @@
 void coordenada::setX(float value)
 {
     x = value;
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::setY(float value)
 {
     y = value;
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::setZ(float value)
 {
     z = value;
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::setW(float value)
 {
     w = value;
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::coordtoxyz()
@@ -47,7 +47,7 @@ coordenada::coordenada()
     setY(0);
     setZ(0);
     setW(0);
-    xyztocoord();
+    //xyztocoord();
 }
 
 coordenada::coordenada(float a, float b, float c)
@@ -56,7 +56,7 @@ coordenada::coordenada(float a, float b, float c)
     setY(b);
     setZ(c);
     setW(0);
-    xyztocoord();
+    //xyztocoord();
 }
 
 coordenada::coordenada(float a, float b, float c, float d)
@@ -65,7 +65,7 @@ coordenada::coordenada(float a, float b, float c, float d)
     setY(b);
     setZ(c);
     setW(d);
-    xyztocoord();
+    //xyztocoord();
 }
 
 coordenada coordenada::operator+(coordenada a)
@@ -75,7 +75,7 @@ coordenada coordenada::operator+(coordenada a)
     v.y = y + a.y;
     v.z = z + a.z;
     v.w = w + a.w;
-    v.xyztocoord();
+    //v.xyztocoord();
     return v;
 }
 coordenada coordenada::operator-(coordenada a)
@@ -85,7 +85,7 @@ coordenada coordenada::operator-(coordenada a)
     v.y = y - a.y;
     v.z = z - a.z;
     v.w = w - a.w;
-    v.xyztocoord();
+    //v.xyztocoord();
     return v;
 }
 
@@ -96,7 +96,7 @@ coordenada coordenada::operator * (float a)
     v.y = y * a;
     v.z = z * a;
     v.w = w * a;
-    v.xyztocoord();
+    //v.xyztocoord();
     return v;
 }
 
@@ -106,7 +106,7 @@ void coordenada::add(coordenada a, coordenada b)
     setY(b.y+a.y);
     setZ(b.z+a.z);
     setW(b.w+a.w);
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::add(coordenada a)
@@ -115,7 +115,7 @@ void coordenada::add(coordenada a)
     setY(y+a.y);
     setZ(z+a.z);
     setW(w+a.w);
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::add(float a)
@@ -124,7 +124,7 @@ void coordenada::add(float a)
     setY(y+a);
     setZ(z+a);
     setW(w+a);
-    xyztocoord();
+    //xyztocoord();
 }
 
 
@@ -135,7 +135,7 @@ void coordenada::sub(coordenada a, coordenada b)
     setY(a.y-b.y);
     setZ(a.z-b.z);
     setW(a.w-b.w);
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::sub(coordenada a)
@@ -144,7 +144,7 @@ void coordenada::sub(coordenada a)
     setY(y-a.y);
     setZ(z-a.z);
     setW(w-a.w);
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::sub(float a)
@@ -153,7 +153,7 @@ void coordenada::sub(float a)
     setY(y-a);
     setZ(z-a);
     setW(w-a);
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::mult(float a)
@@ -162,7 +162,7 @@ void coordenada::mult(float a)
     setY(y*a);
     setZ(z*a);
     setW(w*a);
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::mult(coordenada c,float a)
@@ -171,7 +171,7 @@ void coordenada::mult(coordenada c,float a)
     setY(a*c.y);
     setZ(a*c.z);
     setW(a*c.w);
-    xyztocoord();
+    //xyztocoord();
 }
 
 void coordenada::div(float a)
@@ -180,7 +180,7 @@ void coordenada::div(float a)
     setY(y/a);
     setZ(z/a);
     setW(w/a);
-    xyztocoord();
+    //xyztocoord();
 }
 
 float coordenada::magnitude()
@@ -196,7 +196,7 @@ void coordenada::normalizar()
         x = x/m;
         y = y/m;
         z = z/m;
-        xyztocoord();
+        //xyztocoord();
     }
 
 }
@@ -216,7 +216,7 @@ void coordenada::crossproduct(coordenada a, coordenada b) //Cross product
     x = a.y*b.z - a.z*b.y;
     y = a.z*b.x - a.x*b.z;
     z = a.x*b.y - a.y*b.x;
-    xyztocoord();
+    //xyztocoord();
 }
 
 coordenada coordenada::projecao(coordenada a)
