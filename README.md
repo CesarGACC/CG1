@@ -3,7 +3,8 @@
 * Data structure DONE!
 * faces list DONE!
 * vertices list DONE!
-* arestas list 
+* _arestas list_
 * objects list DONE!
 * Plan to receive objects
-* Ray to a triangle face
+* Ray to a triangle face 90%?
+* Light
