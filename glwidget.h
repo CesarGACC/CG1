@@ -14,6 +14,7 @@
 #include "cubo.h"
 #include <objeto.h>
 #include "camera.h"
+#include "luz.h"
 
 class GLWidget : public QGLWidget
 {
@@ -21,6 +22,7 @@ class GLWidget : public QGLWidget
 public:
     std::vector<Objeto> objetos;
     Camera camera;
+    Luz luz;
     explicit GLWidget(QWidget *parent = nullptr);
     void initializeGL();
     void paintGL();

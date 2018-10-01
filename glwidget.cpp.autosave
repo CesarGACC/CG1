@@ -27,6 +27,10 @@ void GLWidget::receberObjetos()
 
 }
 
+void calcularLuz()
+{
+    
+}
 
 void GLWidget::test()
 {
