@@ -2,7 +2,9 @@
 
 Objeto::Objeto()
 {
-    this->r = this->g = this->b = 1.000;
+    corAMB = Cor(0.1,0.1,0.1);
+    corDIF = Cor(0.8,0.8,0.8);
+    corESP = Cor(0.2,0.2,0.2);
 }
 
 vector<o_ponto> Objeto::translation(float x, float y, float z)
@@ -82,7 +84,7 @@ int Objeto::rayToObject(coordenada O, coordenada V)
     bool ray;
     int i,a,b,c;
     float dt,tn,td,t,aux;
-    coordenada vpn0,vpn1,vpn2;
+    coordenada vpn0,vpn1,vpn2,pint;
     for(i=0;i<(int)lf.size();i++)
     {
         ray = true;
@@ -117,7 +119,7 @@ int Objeto::rayToObject(coordenada O, coordenada V)
         if(ray==true)
         {
 
-            coordenada w0, w1, w2, wx, pint,a0,a1,a2;
+            coordenada w0, w1, w2, wx,a0,a1,a2;
             pint = O + V*t;
             w0 = pint - lp[a].p;
             w1 = pint - lp[b].p;
@@ -150,15 +152,34 @@ int Objeto::rayToObject(coordenada O, coordenada V)
          }
         if(ray==true)
         {
+            calcularCor(V, pint, vpn2, Luz(1.000, 1.000, 1.000, 0,10,20));
             return 1;
         }
     }
     return 0;
 }
 
-void Objeto::setMaterial(float r, float g, float b)
+Cor Objeto::calcularCor(coordenada V, coordenada pint, coordenada normal, Luz luz)
 {
-    this->r = r;
-    this->g = g;
-    this->b = b;
+    normal.normalizar();
+    luz.p.normalizar();
+    pint.normalizar();
+
+    float difusa, especular;
+    coordenada r,l;
+    l = luz.p - pint;
+    l.normalizar();
+    difusa = normal.dotproduct(normal,l);
+
+    r = normal;
+    r = (r*difusa)*2;
+    r = r - l;
+    r.normalizar();
+    especular = r.dotproduct(r,V);
+
+
+   corAparente.r = corAMB.r * luz.cor.r + corDIF.r * luz.cor.r * difusa + luz.cor.r * corESP.r * especular;
+   corAparente.g = corAMB.g * luz.cor.g + corDIF.g * luz.cor.g * difusa + luz.cor.g * corESP.g * especular;
+   corAparente.b = corAMB.b * luz.cor.b + corDIF.b * luz.cor.b * difusa + luz.cor.b * corESP.b * especular;
+
 }

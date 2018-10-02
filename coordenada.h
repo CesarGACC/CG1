@@ -22,6 +22,7 @@ public:
     void sub(float a);
     coordenada operator - (coordenada a);
 
+    coordenada mult1x1(coordenada a, coordenada b);
     void mult(coordenada c,float a);
     void mult(float a);
     coordenada operator * (float a);

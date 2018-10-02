@@ -12,21 +12,23 @@ void GLWidget::receberObjetos()
 {
     objetos.push_back(cubo());
     objetos.push_back(cubo());
-    objetos[0].translation(-0.5,-0.5,-0.5);
+    objetos[0].translation(-0.5,-0.5,0.5);
     objetos[0].lp = objetos[0].scale(10,10,10);
     objetos[0].lp = objetos[0].translation(-10,-5,10);
-    objetos[0].setMaterial(0.4,0.4,0.4);
 
-    objetos[1].lp = objetos[1].translation(-0.5,-0.5,-0.5);
+    objetos[1].lp = objetos[1].translation(-0.5,-0.5,0.5);
     //objetos[0].lp = objetos[0].rotation(45,0,0,1);
     //objetos[0].lp = objetos[0].rotation(45,1,0,0);
     objetos[1].lp = objetos[1].scale(5,5,5);
     objetos[1].lp = objetos[1].translation(-10,2.5,5);
-    objetos[1].setMaterial(0.6,0.6,0.6);
 
 
 }
 
+void calcularLuz()
+{
+
+}
 
 void GLWidget::test()
 {
@@ -59,7 +61,7 @@ void GLWidget::test()
                          glVertex3f(x, y, 0);
                      }*/
                      //glColor3f((rand()%255)/255., (rand()%255)/255., (rand()%255)/255.);
-                     glColor3f(objetos[i].r, objetos[i].g, objetos[i].b);
+                     glColor3f(objetos[i].corAparente.r, objetos[i].corAparente.g, objetos[i].corAparente.b);
                      glVertex3f(x, y, 0);
                  }
             }
@@ -81,18 +83,14 @@ void GLWidget::desenharObjetos()
         {
             for(j=0;j<(int)objetos[i].lf.size();j++)
             {
-                objetos[i].rayToObject(camera.p,camera.lookat);
+                //objetos[i].rayToObject(camera.p,camera.lookat);
                 glColor3f((float)(rand()%1000)/1000,(float)(rand()%1000)/1000,(float)(rand()%1000)/1000);
                     glBegin(GL_TRIANGLES);
                     glVertex3f(objetos[i].getX(j,0),objetos[i].getY(j,0),objetos[i].getZ(j,0));
                     glVertex3f(objetos[i].getX(j,1),objetos[i].getY(j,1),objetos[i].getZ(j,1));
                     glVertex3f(objetos[i].getX(j,2),objetos[i].getY(j,2),objetos[i].getZ(j,2));
                 glEnd();
-              /*
-                printf("(%f,%f,%f)\n",objetos[i].lf.l.at(j).p[0]->p.getX(),objetos[i].lf.l.at(j).p[0]->p.getY(),objetos[i].lf.l.at(j).p[0]->p.getZ());
-                printf("(%f,%f,%f)\n",objetos[i].lf.l.at(j).p[1]->p.getX(),objetos[i].lf.l.at(j).p[1]->p.getY(),objetos[i].lf.l.at(j).p[0]->p.getZ());
-                printf("(%f,%f,%f)\n",objetos[i].lf.l.at(j).p[2]->p.getX(),objetos[i].lf.l.at(j).p[2]->p.getY(),objetos[i].lf.l.at(j).p[0]->p.getZ());
-            */}
+            }
         }
     //glEnd();
     glColor3f(1,1,1);
@@ -101,27 +99,24 @@ void GLWidget::desenharObjetos()
 void GLWidget::desenharCubo()
 {
     int i;
-    cubo c = cubo();/*
     glColor3f(1,0,0);
         glBegin(GL_POINTS);
-        for(p=0;p<8 ;p++)
+        for(int j=0;j<(int)objetos[0].lf.size();j++)
         {
-            printf("Imprimindo (%f,%f,%f)\n",c.lp.l.at(p).p.getX(),c.lp.l.at(p).p.getY(),c.lp.l.at(p).p.getZ());
-            glVertex3f(c.lp.l.at(p).p.getX(),c.lp.l.at(p).p.getY(),c.lp.l.at(p).p.getZ());
+            for(int p=0;p<3 ;p++)
+            {
+                if(objetos[0].lf[j].id < 2)
+                {
+                    glColor3f(1,1,1);
+                    glVertex3f(objetos[0].getX(j,p),objetos[0].getY(j,p),objetos[0].getZ(j,p));
+                }else
+                {
+                    glColor3f(1,0,0);
+                    glVertex3f(objetos[0].getX(j,p),objetos[0].getY(j,p),objetos[0].getZ(j,p));
+                }
+            }
         }
     glEnd();
-    glColor3f(1,1,1);*/
-
-    glColor3f(1,0,0);
-        glBegin(GL_TRIANGLES);
-        for(i=0;i<12 ;i++)
-        {/*
-            glVertex3f(c.lf.l.at(i).p[0]->p.getX(),c.lf.l.at(i).p[0]->p.getY(),c.lf.l.at(i).p[0]->p.getZ());
-            glVertex3f(c.lf.l.at(i).p[1]->p.getX(),c.lf.l.at(i).p[1]->p.getY(),c.lf.l.at(i).p[1]->p.getZ());
-            glVertex3f(c.lf.l.at(i).p[2]->p.getX(),c.lf.l.at(i).p[2]->p.getY(),c.lf.l.at(i).p[2]->p.getZ());
-        */}
-    glEnd();
-    glColor3f(1,1,1);
 }
 
 void GLWidget::initializeGL()
@@ -150,7 +145,7 @@ void GLWidget::paintGL()
 
     //glFrustum(-5,5,-5,5,-2,1000);
 
-
+    //desenharCubo();
     //desenharObjetos();
     test();
     desenhaEixo();

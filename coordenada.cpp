@@ -95,7 +95,16 @@ coordenada coordenada::operator * (float a)
     v.x = x * a;
     v.y = y * a;
     v.z = z * a;
-    v.w = w * a;
+    //v.xyztocoord();
+    return v;
+}
+
+coordenada coordenada::mult1x1(coordenada a, coordenada b)
+{
+    coordenada v = coordenada();
+    v.x = a.x * b.x ;
+    v.y = a.y * b.x ;
+    v.z = a.z * b.x ;
     //v.xyztocoord();
     return v;
 }

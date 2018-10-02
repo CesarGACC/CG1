@@ -1,13 +1,13 @@
 #ifndef LUZ_H
 #define LUZ_H
 #include "coordenada.h"
-
+#include "Cor.h"
 class Luz
 {
 public:
     Luz();
     Luz(float r, float g, float b, float x, float y, float z);
-    float r,g,b;
+    Cor cor;
     coordenada p;
 
 };
