@@ -115,7 +115,7 @@ int Objeto::rayToObject(coordenada O, coordenada V)
         }
         if(t<0)
         {
-            ray = false;
+            ray = false;//salvar menor t
         }
 
         if(ray==true)
