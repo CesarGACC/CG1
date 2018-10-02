@@ -15,11 +15,10 @@ class Objeto
 {
 public:
     Objeto();
-    //l_pontos lp;
-    //l_faces lf;
 
     std::vector<o_face> lf;
     std::vector<o_ponto> lp;
+
     Cor corAMB, corDIF, corESP;
     Cor corAparente;
     vector<o_ponto> translation(float x, float y, float z);
@@ -30,6 +29,7 @@ public:
     float getZ(int i,int j);
     Cor calcularCor(coordenada O, coordenada V, coordenada pint, Luz l);
     int rayToObject(coordenada O, coordenada V);
+    //int rayToFace(coordenada O, coordenada V, int F);
 
 };
 

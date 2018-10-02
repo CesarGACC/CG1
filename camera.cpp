@@ -16,7 +16,7 @@ Camera::Camera(coordenada newp, coordenada newlookat, coordenada newviewup){}
 
 void Camera::calcularIJK()
 {
-    pcK.sub(lookat,p);
+    pcK = lookat - p;
     pcK.normalizar();
 
     pcI.crossproduct(viewup,pcK);

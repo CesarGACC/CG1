@@ -220,12 +220,22 @@ float coordenada::dotproduct(coordenada a, coordenada b)
     return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
-void coordenada::crossproduct(coordenada a, coordenada b) //Cross product
+/*void coordenada::crossproduct(coordenada a, coordenada b) //Cross product
 {
     x = a.y*b.z - a.z*b.y;
     y = a.z*b.x - a.x*b.z;
     z = a.x*b.y - a.y*b.x;
     //xyztocoord();
+}*/
+
+coordenada coordenada::crossproduct(coordenada a, coordenada b) //Cross product
+{
+    coordenada v = coordenada();
+    v.x = a.y*b.z - a.z*b.y ;
+    v.y = a.z*b.x - a.x*b.z ;
+    v.z = a.x*b.y - a.y*b.x ;
+    //v.xyztocoord();
+    return v;
 }
 
 coordenada coordenada::projecao(coordenada a)

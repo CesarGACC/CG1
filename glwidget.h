@@ -8,8 +8,6 @@
 #include <cstring>
 #include <iostream>
 #include <math.h>
-#include "l_pontos.h"
-#include "l_faces.h"
 #include "objeto.h"
 #include "cubo.h"
 #include <objeto.h>

@@ -10,6 +10,7 @@ public:
     Cor cor;
     coordenada p;
 
+
 };
 
 #endif // LUZ_H

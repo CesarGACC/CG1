@@ -12,13 +12,12 @@ void GLWidget::receberObjetos()
 {
     objetos.push_back(cubo());
     objetos.push_back(cubo());
-    objetos[0].translation(-0.5,-0.5,0.5);
+
+    objetos[0].lp = objetos[0].translation(-0.5,-0.5,0.5);
     objetos[0].lp = objetos[0].scale(10,10,10);
     objetos[0].lp = objetos[0].translation(-10,-5,10);
 
     objetos[1].lp = objetos[1].translation(-0.5,-0.5,0.5);
-    //objetos[0].lp = objetos[0].rotation(45,0,0,1);
-    //objetos[0].lp = objetos[0].rotation(45,1,0,0);
     objetos[1].lp = objetos[1].scale(5,5,5);
     objetos[1].lp = objetos[1].translation(-10,2.5,5);
 
@@ -32,7 +31,6 @@ void calcularLuz()
 
 void GLWidget::test()
 {
-    int i;
     float x, y, Dx, Dy;
     coordenada v = coordenada(0,0,0,1);
     Dx = W/W_Npixels;
@@ -51,7 +49,7 @@ void GLWidget::test()
             v.add(camera.p);
             v.normalizar();
 
-            for(i=0;i<objetos.size() ;i++)
+            for(int i=0;i<objetos.size() ;i++)
             {
                  if((objetos[i].rayToObject(camera.p,v))==1)
                  {
@@ -187,4 +185,3 @@ void GLWidget::desenhaEixo()
 
     glColor3f(1,1,1);
 }
-

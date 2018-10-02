@@ -88,12 +88,13 @@ int Objeto::rayToObject(coordenada O, coordenada V)
     for(i=0;i<(int)lf.size();i++)
     {
         ray = true;
+        vpn2 = coordenada();
         a = lf[i].p[0];
         b = lf[i].p[1];
         c = lf[i].p[2];
         vpn0 =  lp[b].p - lp[a].p;
         vpn1 =  lp[c].p - lp[a].p;
-        vpn2.crossproduct(vpn0,vpn1);
+        vpn2 = vpn2.crossproduct(vpn0,vpn1);
         vpn2.normalizar();
         dt = vpn2.dotproduct(vpn2,V);
 
@@ -128,22 +129,22 @@ int Objeto::rayToObject(coordenada O, coordenada V)
             a0 = lp[b].p - lp[a].p;
             a1 = lp[c].p - lp[b].p;
             a2 = lp[a].p - lp[c].p;
-
-            wx.crossproduct(a0,w0);
+            wx = coordenada();
+            wx = wx.crossproduct(a0,w0);
             aux = vpn2.dotproduct(vpn2,wx);
             if(aux < 0)
             {
                 ray = false;
             }
 
-            wx.crossproduct(a1,w1);
+            wx = wx.crossproduct(a1,w1);
             aux = vpn2.dotproduct(vpn2,wx);
             if(aux < 0)
             {
                 ray = false;
             }
 
-            wx.crossproduct(a2,w2);
+            wx = wx.crossproduct(a2,w2);
             aux = vpn2.dotproduct(vpn2,wx);
             if(aux < 0)
             {
@@ -152,7 +153,7 @@ int Objeto::rayToObject(coordenada O, coordenada V)
          }
         if(ray==true)
         {
-            calcularCor(V, pint, vpn2, Luz(1.000, 1.000, 1.000, 0,10,20));
+            calcularCor(V, pint, vpn2, Luz(1.000, 1.000, 1.000, 0,10,2));
             return 1;
         }
     }

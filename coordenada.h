@@ -36,7 +36,8 @@ public:
      void normalizar();
      float distancia(coordenada a, coordenada b);
 
-     void crossproduct(coordenada a, coordenada b);
+     coordenada crossproduct(coordenada a, coordenada b);
+     //void crossproduct(coordenada a, coordenada b);
      float dotproduct(coordenada a, coordenada b);
      coordenada projecao(coordenada a);
      float angulo(coordenada a);

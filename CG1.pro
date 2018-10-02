@@ -28,9 +28,6 @@ SOURCES += \
         mainwindow.cpp \
     o_ponto.cpp \
     coordenada.cpp \
-    l_pontos.cpp \
-    l_faces.cpp \
-    o_aresta.cpp \
     o_face.cpp \
     glwidget.cpp \
     cubo.cpp \
@@ -44,9 +41,6 @@ HEADERS += \
         mainwindow.h \
     o_ponto.h \
     coordenada.h \
-    l_pontos.h \
-    l_faces.h \
-    o_aresta.h \
     o_face.h \
     glwidget.h \
     cubo.h \
