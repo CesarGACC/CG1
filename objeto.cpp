@@ -82,9 +82,10 @@ float Objeto::getZ(int i, int j)
 int Objeto::rayToObject(coordenada O, coordenada V)
 {
     bool ray;
-    int i,a,b,c;
+    int i,a,b,c,ww;
     float dt,tn,td,t,aux;
     coordenada vpn0,vpn1,vpn2,pint;
+
     for(i=0;i<(int)lf.size();i++)
     {
         ray = true;
@@ -119,7 +120,7 @@ int Objeto::rayToObject(coordenada O, coordenada V)
 
         if(ray==true)
         {
-
+            ww=0;
             coordenada w0, w1, w2, wx,a0,a1,a2;
             pint = O + V*t;
             w0 = pint - lp[a].p;
@@ -132,24 +133,21 @@ int Objeto::rayToObject(coordenada O, coordenada V)
             wx = coordenada();
             wx = wx.crossproduct(a0,w0);
             aux = vpn2.dotproduct(vpn2,wx);
-            if(aux < 0)
-            {
-                ray = false;
-            }
+            if(aux < 0)ww--;
+            else ww++;
 
             wx = wx.crossproduct(a1,w1);
             aux = vpn2.dotproduct(vpn2,wx);
-            if(aux < 0)
-            {
-                ray = false;
-            }
+            if(aux < 0)ww--;
+            else ww++;
 
             wx = wx.crossproduct(a2,w2);
             aux = vpn2.dotproduct(vpn2,wx);
-            if(aux < 0)
-            {
-                ray = false;
-            }
+            if(aux < 0)ww--;
+            else ww++;
+
+            if((ww==3) || (ww==-3))ray = true;
+            else ray=false;
          }
         if(ray==true)
         {
