@@ -2,7 +2,7 @@
 
 Cor::Cor()
 {
-    r = g = b = 1.000;
+    r = g = b = 0.050;
 }
 
 Cor::Cor(float r, float g, float b)

@@ -35,7 +35,8 @@ SOURCES += \
     circulo.cpp \
     camera.cpp \
     luz.cpp \
-    cor.cpp
+    cor.cpp \
+    raycast.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,7 +49,8 @@ HEADERS += \
     circulo.h \
     camera.h \
     luz.h \
-    cor.h
+    cor.h \
+    raycast.h
 
 FORMS += \
         mainwindow.ui

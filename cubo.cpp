@@ -6,10 +6,10 @@ cubo::cubo()
     lp.push_back(o_ponto(1,1,0,0));
     lp.push_back(o_ponto(2,1,1,0));
     lp.push_back(o_ponto(3,0,1,0));
-    lp.push_back(o_ponto(4,0,0,-1));
-    lp.push_back(o_ponto(5,1,0,-1));
-    lp.push_back(o_ponto(6,1,1,-1));
-    lp.push_back(o_ponto(7,0,1,-1));
+    lp.push_back(o_ponto(4,0,0,1));
+    lp.push_back(o_ponto(5,1,0,1));
+    lp.push_back(o_ponto(6,1,1,1));
+    lp.push_back(o_ponto(7,0,1,1));
 
     lf.push_back(o_face(0,0,1,3));
     lf.push_back(o_face(1,1,2,3));

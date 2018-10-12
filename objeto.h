@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <vector>
+#include <float.h>
 #include "cor.h"
 #include "luz.h"
 #include "o_ponto.h"

@@ -6,7 +6,9 @@ class circulo : public Objeto
 public:
     coordenada centro;
     float raio;
+    Cor cor;
     circulo();
+    circulo(float raio, coordenada centro);
 };
 
 #endif // CIRCULO_H

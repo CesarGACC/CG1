@@ -10,16 +10,17 @@ GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 
 void GLWidget::receberObjetos()
 {
-    objetos.push_back(cubo());
-    objetos.push_back(cubo());
+    //objetos.push_back(circulo(5.0,coordenada(0.0,0.0,0.0)));
 
-    objetos[0].lp = objetos[0].translation(-0.5,-0.5,0.5);
+    objetos.push_back(cubo());
+    objetos.push_back(cubo());
+    objetos[0].lp = objetos[0].translation(-0.5,-0.5,-0.5);
     objetos[0].lp = objetos[0].scale(10,10,10);
-    objetos[0].lp = objetos[0].translation(-10,-5,10);
+    objetos[0].lp = objetos[0].translation(0,0,10);
 
-    objetos[1].lp = objetos[1].translation(-0.5,-0.5,0.5);
+    objetos[1].lp = objetos[1].translation(-0.5,-0.5,-0.5);
     objetos[1].lp = objetos[1].scale(5,5,5);
-    objetos[1].lp = objetos[1].translation(-10,2.5,5);
+    objetos[1].lp = objetos[1].translation(0,7.5,5);
 
 
 }
@@ -29,10 +30,12 @@ void calcularLuz()
 
 }
 
-void GLWidget::test()
+void GLWidget::RayCasting()
 {
+    RayCast ray = RayCast();
+    Cor cor = Cor();
     float x, y, Dx, Dy;
-    coordenada v = coordenada(0,0,0,1);
+
     Dx = W/W_Npixels;
     Dy = H/H_Npixels;
 
@@ -43,21 +46,51 @@ void GLWidget::test()
         for (int c = 0; c < W_Npixels; c++)
         {
             x = -W/2 + Dx/2 + c*Dx;
-            v.setX(x);
-            v.setY(y);
-            v.setZ(0);
-            v.add(camera.p);
-            v.normalizar();
+            coordenada vdir = coordenada(x,y,0,1);
+            vdir = vdir - camera.p;
+            vdir.normalizar();
+            cor = ray.rayToObjects(camera.p, vdir, objetos);
+            //cor = ray.rayToMaths(camera.p, vdir, objetos);
+            glColor3f(cor.r, cor.g, cor.b);
+            glVertex3f(x, y, 0);
+        }
+    }
+    glEnd();
+    glFlush();
+}
 
+void GLWidget::test()
+{
+    /*float x, y, Dx, Dy;
+
+    Dx = W/W_Npixels;
+    Dy = H/H_Npixels;
+
+    glBegin(GL_POINTS);
+    for (int l = 0; l < H_Npixels; l++)
+    {
+        y = H/2 - Dy/2 - l*Dy;
+        for (int c = 0; c < W_Npixels; c++)
+        {
+            x = -W/2 + Dx/2 + c*Dx;
+            coordenada vdir = coordenada(x,y,0,1);
+            vdir = vdir + camera.p;
+            vdir.normalizar();
+
+            if((objetos.rayToObject(camera.p,vdir))==1)
+            {
+                glColor3f(objetos[i].corAparente.r, objetos[i].corAparente.g, objetos[i].corAparente.b);
+                glVertex3f(x, y, 0);
+            }
             for(int i=0;i<objetos.size() ;i++)
             {
-                 if((objetos[i].rayToObject(camera.p,v))==1)
+                 if((objetos[i].rayToObject(camera.p,vdir))==1)
                  {
-                     /*for(int j=0;j<objetos[i].lf.size();j++)
+                     for(int j=0;j<objetos[i].lf.size();j++)
                      {
                          glColor3f(objetos[i].lf[j].r, objetos[i].lf[j].g, objetos[i].lf[j].b);
                          glVertex3f(x, y, 0);
-                     }*/
+                     }
                      //glColor3f((rand()%255)/255., (rand()%255)/255., (rand()%255)/255.);
                      glColor3f(objetos[i].corAparente.r, objetos[i].corAparente.g, objetos[i].corAparente.b);
                      glVertex3f(x, y, 0);
@@ -68,7 +101,7 @@ void GLWidget::test()
         }
     }
     glEnd();
-    glFlush();
+    glFlush();*/
 }
 
 void GLWidget::desenharObjetos()
@@ -145,7 +178,9 @@ void GLWidget::paintGL()
 
     //desenharCubo();
     //desenharObjetos();
-    test();
+    //test();
+    RayCasting();
+
     desenhaEixo();
 }
 

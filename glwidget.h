@@ -10,10 +10,10 @@
 #include <math.h>
 #include "objeto.h"
 #include "cubo.h"
-#include <objeto.h>
+#include "circulo.h"
 #include "camera.h"
 #include "luz.h"
-
+#include "raycast.h"
 class GLWidget : public QGLWidget
 {
     Q_OBJECT
@@ -30,6 +30,7 @@ public:
     void desenhaEixo();
     void receberObjetos();
     void desenharObjetos();
+    void RayCasting();
 
 
 signals:

@@ -194,7 +194,7 @@ void coordenada::div(float a)
 
 float coordenada::magnitude()
 {
-    return sqrt(x*x+y*y+z*z);
+    return fabs(sqrt(x*x+y*y+z*z));
 }
 
 void coordenada::normalizar()

@@ -84,77 +84,101 @@ int Objeto::rayToObject(coordenada O, coordenada V)
     bool ray;
     int i,a,b,c,ww;
     float dt,tn,td,t,aux;
-    coordenada vpn0,vpn1,vpn2,pint;
+    float newt;
+    int facea,faceb,facec;
+    newt = FLT_MAX;
 
-    for(i=0;i<(int)lf.size();i++)
-    {
-        ray = true;
-        vpn2 = coordenada();
-        a = lf[i].p[0];
-        b = lf[i].p[1];
-        c = lf[i].p[2];
-        vpn0 =  lp[b].p - lp[a].p;
-        vpn1 =  lp[c].p - lp[a].p;
-        vpn2 = vpn2.crossproduct(vpn0,vpn1);
-        vpn2.normalizar();
-        dt = vpn2.dotproduct(vpn2,V);
 
-        if(fabs(dt) < 0.000001)
+
+    coordenada vpn0,vpn1,vpn2, vpnx;
+    coordenada w0, w1, w2, wx,a0,a1,a2,pint;
+    //for(int j=0;j<this->size() ;j++)
+    //{
+        for(int i=0;i<(int)lf.size();i++)
         {
-            ray = false; //PARALELO
+            ray = true;
+            vpn2 = coordenada();
+            a = lf[i].p[0];
+            b = lf[i].p[1];
+            c = lf[i].p[2];
+            vpn0 =  lp[b].p - lp[a].p;
+            vpn1 =  lp[c].p - lp[a].p;
+            vpn2 = vpn2.crossproduct(vpn0,vpn1);
+            vpn2.normalizar();
+            dt = vpn2.dotproduct(vpn2,V);
+
+            if(fabs(dt) < 0.000001)
+            {
+                ray = false; //PARALELO
+            }
+
+            tn = vpn2.dotproduct(O,vpn2) + dt;
+            td = vpn2.dotproduct(V,vpn2);
+            if(td!=0)
+            {
+                t = tn/td;
+            }else
+            {
+                ray = false;
+            }
+            if(t<=0)
+            {
+                ray = false;
+            }else
+            {
+                if(t<newt)
+                {
+                    newt = t;
+                    facea = a;
+                    faceb = b;
+                    facec = c;
+                    vpnx = vpn2;
+                }else
+                {
+                    ray = false;
+                }
+            }
+
+            if(ray==true)
+            {
+                ww=0;
+
+                pint = V*newt + O;
+                w0 = pint - lp[facea].p;
+                w1 = pint - lp[faceb].p;
+                w2 = pint - lp[facec].p;
+
+                a0 = lp[faceb].p - lp[facea].p;
+                a1 = lp[facec].p - lp[faceb].p;
+                a2 = lp[facea].p - lp[facec].p;
+                wx = coordenada();
+                wx = wx.crossproduct(a0,w0);
+                wx.normalizar();
+                aux = vpnx.dotproduct(vpnx,wx);
+                if(aux < 0)ww--;
+                else ww++;
+
+                wx = wx.crossproduct(a1,w1);
+                aux = vpnx.dotproduct(vpnx,wx);
+                if(aux < 0)ww--;
+                else ww++;
+
+                wx = wx.crossproduct(a2,w2);
+                aux = vpnx.dotproduct(vpnx,wx);
+                if(aux < 0)ww--;
+                else ww++;
+
+                if((ww==3) || (ww==-3))ray = true;
+                else ray=false;
+                i=i;
+            }
+            if(ray==true)
+            {
+                calcularCor(V, pint, vpnx, Luz(1.000, 1.000, 1.000, 0,10,2));
+                return 1;
+            }
         }
-
-        tn = vpn2.dotproduct(O,vpn2) + dt;
-        td = vpn2.dotproduct(V,vpn2);
-        if(td!=0)
-        {
-            t = tn/td;
-        }else
-        {
-            ray = false;
-        }
-        if(t<0)
-        {
-            ray = false;
-        }
-
-        if(ray==true)
-        {
-            ww=0;
-            coordenada w0, w1, w2, wx,a0,a1,a2;
-            pint = O + V*t;
-            w0 = pint - lp[a].p;
-            w1 = pint - lp[b].p;
-            w2 = pint - lp[c].p;
-
-            a0 = lp[b].p - lp[a].p;
-            a1 = lp[c].p - lp[b].p;
-            a2 = lp[a].p - lp[c].p;
-            wx = coordenada();
-            wx = wx.crossproduct(a0,w0);
-            aux = vpn2.dotproduct(vpn2,wx);
-            if(aux < 0)ww--;
-            else ww++;
-
-            wx = wx.crossproduct(a1,w1);
-            aux = vpn2.dotproduct(vpn2,wx);
-            if(aux < 0)ww--;
-            else ww++;
-
-            wx = wx.crossproduct(a2,w2);
-            aux = vpn2.dotproduct(vpn2,wx);
-            if(aux < 0)ww--;
-            else ww++;
-
-            if((ww==3) || (ww==-3))ray = true;
-            else ray=false;
-         }
-        if(ray==true)
-        {
-            calcularCor(V, pint, vpn2, Luz(1.000, 1.000, 1.000, 0,10,2));
-            return 1;
-        }
-    }
+    //}
     return 0;
 }
 
@@ -177,8 +201,8 @@ Cor Objeto::calcularCor(coordenada V, coordenada pint, coordenada normal, Luz lu
     especular = r.dotproduct(r,V);
 
 
-   corAparente.r = corAMB.r * luz.cor.r + corDIF.r * luz.cor.r * difusa + luz.cor.r * corESP.r * especular;
-   corAparente.g = corAMB.g * luz.cor.g + corDIF.g * luz.cor.g * difusa + luz.cor.g * corESP.g * especular;
-   corAparente.b = corAMB.b * luz.cor.b + corDIF.b * luz.cor.b * difusa + luz.cor.b * corESP.b * especular;
+   corAparente.r = corAMB.r * luz.cor.r + corDIF.r * luz.cor.r * difusa ;//+ luz.cor.r * corESP.r * especular;
+   corAparente.g = corAMB.g * luz.cor.g + corDIF.g * luz.cor.g * difusa ;//+ luz.cor.g * corESP.g * especular;
+   corAparente.b = corAMB.b * luz.cor.b + corDIF.b * luz.cor.b * difusa ;//+ luz.cor.b * corESP.b * especular;
 
 }
