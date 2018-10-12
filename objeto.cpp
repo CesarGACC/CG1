@@ -88,24 +88,6 @@ int Objeto::rayToObject(coordenada O, coordenada V)
     int facea,faceb,facec;
     newt = FLT_MAX;
 
-
-<<<<<<< HEAD
-=======
-        tn = vpn2.dotproduct(O,vpn2) + dt;
-        td = vpn2.dotproduct(V,vpn2);
-        if(td!=0)
-        {
-            t = tn/td;
-        }else
-        {
-            ray = false;
-        }
-        if(t<0)
-        {
-            ray = false;//salvar menor t
-        }
->>>>>>> 6c4b512d3aa36ac9b06133152446ae0e902392f8
-
     coordenada vpn0,vpn1,vpn2, vpnx;
     coordenada w0, w1, w2, wx,a0,a1,a2,pint;
     //for(int j=0;j<this->size() ;j++)
@@ -168,18 +150,18 @@ int Objeto::rayToObject(coordenada O, coordenada V)
                 a1 = lp[facec].p - lp[faceb].p;
                 a2 = lp[facea].p - lp[facec].p;
                 wx = coordenada();
-                wx = wx.crossproduct(a0,w0);
+                wx = wx.crossproduct(w1,w0);
                 wx.normalizar();
                 aux = vpnx.dotproduct(vpnx,wx);
                 if(aux < 0)ww--;
                 else ww++;
 
-                wx = wx.crossproduct(a1,w1);
+                wx = wx.crossproduct(w2,w1);
                 aux = vpnx.dotproduct(vpnx,wx);
                 if(aux < 0)ww--;
                 else ww++;
 
-                wx = wx.crossproduct(a2,w2);
+                wx = wx.crossproduct(w0,w2);
                 aux = vpnx.dotproduct(vpnx,wx);
                 if(aux < 0)ww--;
                 else ww++;
