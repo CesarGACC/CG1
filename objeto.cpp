@@ -89,6 +89,22 @@ int Objeto::rayToObject(coordenada O, coordenada V)
     newt = FLT_MAX;
 
 
+<<<<<<< HEAD
+=======
+        tn = vpn2.dotproduct(O,vpn2) + dt;
+        td = vpn2.dotproduct(V,vpn2);
+        if(td!=0)
+        {
+            t = tn/td;
+        }else
+        {
+            ray = false;
+        }
+        if(t<0)
+        {
+            ray = false;//salvar menor t
+        }
+>>>>>>> 6c4b512d3aa36ac9b06133152446ae0e902392f8
 
     coordenada vpn0,vpn1,vpn2, vpnx;
     coordenada w0, w1, w2, wx,a0,a1,a2,pint;
