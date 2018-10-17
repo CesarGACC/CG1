@@ -3,10 +3,10 @@
 
 #include "objeto.h"
 
-class cubo : public Objeto
+class Cubo : public Objeto
 {
 public:
-    cubo();
+    Cubo();
 };
 
 #endif // CUBO_H

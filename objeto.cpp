@@ -2,7 +2,7 @@
 
 Objeto::Objeto()
 {
-    corAMB = Cor(0.1,0.1,0.1);
+    corAMB = Cor(0.4,0.4,0.4);
     corDIF = Cor(0.8,0.8,0.8);
     corESP = Cor(0.2,0.2,0.2);
 }

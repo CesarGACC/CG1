@@ -10,17 +10,23 @@ GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 
 void GLWidget::receberObjetos()
 {
-    //objetos.push_back(circulo(5.0,coordenada(0.0,0.0,0.0)));
+    /*objetos.push_back(Triangulo());
+    objetos.push_back(Triangulo());
+    objetos[0].lp = objetos[0].scale(10,10,0);
+    objetos[0].lp = objetos[0].translation(5,0,5);
 
-    objetos.push_back(cubo());
-    objetos.push_back(cubo());
+    objetos[1].lp = objetos[1].scale(10,10,0);
+    objetos[1].lp = objetos[1].translation(-5,0,5);*/
+
+    objetos.push_back(Cubo());
+    //objetos.push_back(Cubo());
     objetos[0].lp = objetos[0].translation(-0.5,-0.5,-0.5);
     objetos[0].lp = objetos[0].scale(10,10,10);
-    objetos[0].lp = objetos[0].translation(0,0,10);
-
+    objetos[0].lp = objetos[0].translation(-10,-10,7.5);
+/*
     objetos[1].lp = objetos[1].translation(-0.5,-0.5,-0.5);
     objetos[1].lp = objetos[1].scale(5,5,5);
-    objetos[1].lp = objetos[1].translation(0,7.5,5);
+    objetos[1].lp = objetos[1].translation(0,7.5,5);*/
 
 
 }
@@ -158,7 +164,7 @@ void GLWidget::initializeGL()
     glEnable(GL_LIGHTING);
     glEnable(GL_COLOR_MATERIAL);
     luz = Luz(1.0,1.0,1.0, 0,10,-2);
-    camera = Camera(0,0,-2, 0,0,70, 0,1,0);
+    camera = Camera(0,0,-2, 0,0,1, 0,1,0);
     camera.calcularIJK();
 
     receberObjetos();
@@ -170,9 +176,7 @@ void GLWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(camera.lookat.x,camera.lookat.y,camera.lookat.z,
-              camera.p.x,camera.p.y,camera.p.z,
-              camera.viewup.x,camera.viewup.y,camera.viewup.z);
+    gluLookAt(0,0,70 ,0,0,-2, 0,1,0);
 
     //glFrustum(-5,5,-5,5,-2,1000);
 

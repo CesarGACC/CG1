@@ -11,6 +11,7 @@
 #include "objeto.h"
 #include "cubo.h"
 #include "circulo.h"
+#include "triangulo.h"
 #include "camera.h"
 #include "luz.h"
 #include "raycast.h"
