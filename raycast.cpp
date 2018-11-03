@@ -105,7 +105,7 @@ Cor RayCast::rayToObjects(coordenada O, coordenada V, std::vector<Objeto> objeto
     if(TestRay2==true)
     {
         //return Cor(1.0,1.0,1.0);
-        return calcularCor(V, pintnew, vpnx, Luz(0.500, 0.500, 0.500, 0,0,1), objetos[objeto].lf[face]);
+        return calcularCor(V, pintnew, vpnx, Luz(0.500, 0.500, 0.500, 0,0,-2), objetos[objeto].lf[face]);
     }else return Cor();
 }
 
@@ -117,7 +117,7 @@ Cor RayCast::calcularCor(coordenada V, coordenada pint, coordenada normal, Luz l
 
 
     float difusa, especular,m;
-    m = 5.1;
+    m = 0.21;
     coordenada r,l,n;
 
     n = pint - normal;

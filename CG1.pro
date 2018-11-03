@@ -37,7 +37,8 @@ SOURCES += \
     luz.cpp \
     cor.cpp \
     raycast.cpp \
-    triangulo.cpp
+    triangulo.cpp \
+    pot.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +53,8 @@ HEADERS += \
     luz.h \
     cor.h \
     raycast.h \
-    triangulo.h
+    triangulo.h \
+    pot.h
 
 FORMS += \
         mainwindow.ui
